@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightbulb, FaClock, FaRocket, FaPlay } from 'react-icons/fa';
+import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightbulb, FaClock, FaRocket, FaPlay, FaCheck, FaFileAlt, FaUsers, FaPaperclip } from 'react-icons/fa';
 import ScrollingLogos from '../components/ScrollingLogos';
 import BlurText from '../components/BlurText';
 import GradientText from '../components/GradientText';
@@ -118,9 +118,9 @@ export default function LandingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="absolute top-24 left-0 right-0 text-center text-white/70 text-sm tracking-wider uppercase"
+          className="absolute top-24 left-0 right-0 text-center text-white/70 text-sm tracking-wider"
         >
-          Your AI Command Center. All Your Tools. One Conversation.
+          Your AI assistant for email, calendar, marketing, eCom, and more.
         </motion.p>
 
         <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-12 mb-8">
@@ -147,14 +147,23 @@ export default function LandingPage() {
                 Gets Work Done
               </motion.div>
             </div>
-            <div className="text-xl text-white/80 mb-8 leading-relaxed">
+            <div className="text-xl text-white/80 mb-8 leading-relaxed space-y-4">
               <BlurText 
-                text="One chat interface. Over 100 connected tools. From emails to calendar to Shopify — say it, and it's done."
+                text="Talk to your AI assistant. It handles everything."
                 delay={50}
                 animateBy="words"
                 direction="top"
                 className="inline"
               />
+              <div className="block">
+                <BlurText 
+                  text="From emails and calendar to Shopify, Klaviyo, and Notion — Nexevon connects to 100+ tools and gets the work done, all from one chat box."
+                  delay={70}
+                  animateBy="words"
+                  direction="top"
+                  className="inline text-white/70 text-lg"
+                />
+              </div>
             </div>
             <motion.div 
               variants={itemVariants} 
@@ -323,9 +332,9 @@ export default function LandingPage() {
           >
             <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full bg-[#A855F7]/10 blur-xl"></div>
             <div className="text-[#A855F7] text-5xl font-bold mb-4">1</div>
-            <h3 className="text-2xl font-bold mb-4 text-white">Just Ask</h3>
-            <p className="text-white/70 mb-6">Type what you need in plain English.</p>
-            <div className="bg-black/30 rounded-lg p-4 border border-white/10">
+            <h3 className="text-2xl font-bold mb-2 text-white">You Ask. Naturally.</h3>
+            <p className="text-white/70 mb-6">Just type what you need — like you would to a real assistant.</p>
+            <div className="bg-[#A855F7]/10 rounded-2xl p-4 border border-[#A855F7]/20">
               <div className="flex items-start space-x-3">
                 <div className="w-6 h-6 rounded-full bg-[#A855F7] flex items-center justify-center flex-shrink-0 mt-1">
                   <span className="text-xs text-white">U</span>
@@ -336,6 +345,10 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="flex items-center mt-4 text-xs text-white/50">
+              <FaCheck className="text-green-400 mr-2" /> 
+              <span>Natural language, casual command</span>
             </div>
           </motion.div>
 
@@ -350,38 +363,41 @@ export default function LandingPage() {
           >
             <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-[#A855F7]/10 blur-xl"></div>
             <div className="text-[#A855F7] text-5xl font-bold mb-4">2</div>
-            <h3 className="text-2xl font-bold mb-4 text-white">Assistant Gets to Work</h3>
-            <p className="text-white/70 mb-6">Connects to your tools, pulls context, drafts, schedules.</p>
-            <div className="space-y-2">
+            <h3 className="text-2xl font-bold mb-2 text-white">Nexevon Gets to Work</h3>
+            <p className="text-white/70 mb-6">Your AI connects to your tools, pulls the right info, creates drafts, and gets it ready. It checks calendars, finds the file, writes the email — all in seconds.</p>
+            <div className="space-y-3">
               <motion.div 
-                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3"
+                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3 relative overflow-hidden"
                 initial={{ x: -20, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.5 }}
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-animation"></div>
                 <FaCalendarAlt className="text-[#A855F7] text-lg" />
-                <span className="text-white/90 text-sm">Calendar: Checking availability...</span>
+                <span className="text-white/90 text-sm">Calendar: Checking Tuesday availability</span>
               </motion.div>
               <motion.div 
-                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3"
+                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3 relative overflow-hidden"
                 initial={{ x: -20, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.7 }}
               >
-                <FaEnvelope className="text-[#A855F7] text-lg" />
-                <span className="text-white/90 text-sm">Email: Draft invitation ready</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-animation"></div>
+                <FaFileAlt className="text-[#A855F7] text-lg" />
+                <span className="text-white/90 text-sm">Drive: Attaching pitch_deck_v2.pdf</span>
               </motion.div>
               <motion.div 
-                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3"
+                className="bg-black/30 rounded-lg p-3 border border-white/10 flex items-center space-x-3 relative overflow-hidden"
                 initial={{ x: -20, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.9 }}
               >
-                <FaChartLine className="text-[#A855F7] text-lg" />
-                <span className="text-white/90 text-sm">Drive: Attaching pitch_deck_v2.pdf</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-animation"></div>
+                <FaEnvelope className="text-[#A855F7] text-lg" />
+                <span className="text-white/90 text-sm">Email: Draft invitation ready for review</span>
               </motion.div>
             </div>
           </motion.div>
@@ -397,21 +413,37 @@ export default function LandingPage() {
           >
             <div className="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-[#A855F7]/10 blur-xl"></div>
             <div className="text-[#A855F7] text-5xl font-bold mb-4">3</div>
-            <h3 className="text-2xl font-bold mb-4 text-white">Done.</h3>
-            <p className="text-white/70 mb-6">You review, approve, or automate it fully.</p>
+            <h3 className="text-2xl font-bold mb-2 text-white">You Review or Let It Fly</h3>
+            <p className="text-white/70 mb-6">You approve, tweak, or automate it fully. Done in one click — meeting scheduled, email sent, file attached.</p>
             <motion.div 
-              className="bg-black/30 rounded-lg p-6 border border-white/10 flex flex-col items-center justify-center"
+              className="bg-black/30 rounded-lg p-5 border border-white/10"
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 1.1 }}
             >
-              <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mb-2">
-                <FaRocket className="text-green-400 text-xl" />
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center mr-3">
+                    <FaCheck className="text-green-400 text-sm" />
+                  </div>
+                  <span className="text-white font-medium">Status: Scheduled</span>
+                </div>
               </div>
-              <span className="text-green-400 font-medium">Meeting Scheduled</span>
-              <span className="text-white/60 text-sm mt-1">Tuesday, 10:00 AM</span>
-              <span className="text-white/60 text-sm">3 participants</span>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center text-white/70">
+                  <FaCalendarAlt className="text-[#A855F7] mr-3 text-sm" />
+                  <span>Tuesday 10:00 AM</span>
+                </div>
+                <div className="flex items-center text-white/70">
+                  <FaUsers className="text-[#A855F7] mr-3 text-sm" />
+                  <span>Participants: 3</span>
+                </div>
+                <div className="flex items-center text-white/70">
+                  <FaPaperclip className="text-[#A855F7] mr-3 text-sm" />
+                  <span>Attachment: pitch_deck_v2.pdf</span>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>

@@ -56,6 +56,21 @@ body {
   color: white;
 }
 
+/* Shimmer animation for AI typing effect */
+.shimmer-animation {
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .glow-effect {
   box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
 }
