@@ -17,47 +17,14 @@ const logos = [
   { name: 'sosafe', style: 'font-mono font-medium' },
 ];
 
-// Duplicate logos for seamless scrolling
-const duplicatedLogos = [...logos, ...logos];
+// No need to duplicate logos anymore as we're not scrolling
 
 export default function ScrollingLogos() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const firstRowRef = useRef<HTMLDivElement>(null);
   const secondRowRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // First row scrolls left to right
-    const firstRowAnimation = () => {
-      if (firstRowRef.current) {
-        if (firstRowRef.current.scrollLeft >= firstRowRef.current.scrollWidth / 2) {
-          firstRowRef.current.scrollLeft = 0;
-        } else {
-          firstRowRef.current.scrollLeft += 1;
-        }
-      }
-      requestAnimationFrame(firstRowAnimation);
-    };
-
-    // Second row scrolls right to left
-    const secondRowAnimation = () => {
-      if (secondRowRef.current) {
-        if (secondRowRef.current.scrollLeft <= 0) {
-          secondRowRef.current.scrollLeft = secondRowRef.current.scrollWidth / 2;
-        } else {
-          secondRowRef.current.scrollLeft -= 1;
-        }
-      }
-      requestAnimationFrame(secondRowAnimation);
-    };
-
-    const firstRowAnimationId = requestAnimationFrame(firstRowAnimation);
-    const secondRowAnimationId = requestAnimationFrame(secondRowAnimation);
-
-    return () => {
-      cancelAnimationFrame(firstRowAnimationId);
-      cancelAnimationFrame(secondRowAnimationId);
-    };
-  }, []);
+  // No scrolling animation needed anymore
 
   return (
     <div className="w-full py-10 overflow-hidden bg-black" ref={scrollerRef}>
@@ -72,34 +39,12 @@ export default function ScrollingLogos() {
         </motion.div>
       </div>
 
-      {/* First row - scrolls left to right */}
-      <div 
-        ref={firstRowRef} 
-        className="flex overflow-x-hidden whitespace-nowrap mb-6"
-        style={{ scrollBehavior: 'auto' }}
-      >
-        {duplicatedLogos.map((logo, index) => (
+      {/* Static logo display */}
+      <div className="flex flex-wrap justify-center items-center gap-4 px-4 max-w-6xl mx-auto">
+        {logos.map((logo, index) => (
           <div 
-            key={`logo1-${index}`} 
-            className="flex items-center justify-center mx-8 min-w-[120px] opacity-60 hover:opacity-100 transition-opacity duration-300"
-          >
-            <div className={`w-full h-8 relative flex items-center justify-center text-white ${logo.style}`}>
-              {logo.name}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Second row - scrolls right to left */}
-      <div 
-        ref={secondRowRef} 
-        className="flex overflow-x-hidden whitespace-nowrap"
-        style={{ scrollBehavior: 'auto' }}
-      >
-        {duplicatedLogos.slice().reverse().map((logo, index) => (
-          <div 
-            key={`logo2-${index}`} 
-            className="flex items-center justify-center mx-8 min-w-[120px] opacity-60 hover:opacity-100 transition-opacity duration-300"
+            key={`logo-${index}`} 
+            className="flex items-center justify-center px-6 py-2 opacity-70 hover:opacity-100 transition-opacity duration-300"
           >
             <div className={`w-full h-8 relative flex items-center justify-center text-white ${logo.style}`}>
               {logo.name}

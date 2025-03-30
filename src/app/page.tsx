@@ -7,6 +7,7 @@ import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightb
 import ScrollingLogos from '../components/ScrollingLogos';
 import BlurText from '../components/BlurText';
 import GradientText from '../components/GradientText';
+import ConnectedApps from '../components/ConnectedApps';
 import { SiGmail, SiSlack, SiGooglecalendar, SiNotion, SiAsana, SiTrello, SiShopify, SiStripe, SiMailchimp, SiQuickbooks, SiFacebook, SiGoogle, SiSalesforce, SiHubspot, SiZendesk } from 'react-icons/si';
 import { FaMicrosoft } from 'react-icons/fa';
 
@@ -110,7 +111,7 @@ export default function LandingPage() {
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 pt-32 sm:pt-40 pb-16 sm:pb-24 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] gap-12"
+        className="container mx-auto px-4 pt-32 sm:pt-40 pb-0 flex flex-col items-center justify-between min-h-[90vh]"
       >
         {/* Tagline above the main content */}
         <motion.p
@@ -122,87 +123,94 @@ export default function LandingPage() {
           Your AI Command Center. All Your Tools. One Conversation.
         </motion.p>
 
-        {/* Left Side: Text Content */}
-        <motion.div 
-          className="max-w-xl lg:max-w-2xl text-center lg:text-left"
-          variants={containerVariants}
-        >
-          <div className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-            <motion.div 
-              className="text-white inline-block"
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              AI That Actually{" "}
-            </motion.div>
-            <motion.div 
-              className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-[#A855F7] to-[#8B5CF6]"
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Gets Work Done
-            </motion.div>
-          </div>
-          <div className="text-xl text-white/80 mb-8 leading-relaxed">
-            <BlurText 
-              text="One chat interface. Over 100 connected tools. From emails to calendar to Shopify — say it, and it's done."
-              delay={50}
-              animateBy="words"
-              direction="top"
-              className="inline"
-            />
-          </div>
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-12 mb-8">
+          {/* Left Side: Text Content */}
           <motion.div 
-            variants={itemVariants} 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
+            className="max-w-xl lg:max-w-2xl text-center lg:text-left"
+            variants={containerVariants}
           >
-            <Link href="/demo">
-              <motion.button 
-                whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168,85,247,0.7)' }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto bg-[#A855F7] hover:bg-[#8B5CF6] text-white font-semibold py-3 px-8 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+            <div className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+              <motion.div 
+                className="text-white inline-block"
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <span>Try the Demo</span>
-              </motion.button>
-            </Link>
-            <Link href="#signup">
-              <motion.button 
-                whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(255,255,255,0.2)' }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto bg-transparent border border-[#A855F7] text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/5 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+                AI That Actually{" "}
+              </motion.div>
+              <motion.div 
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-[#A855F7] to-[#8B5CF6]"
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <span>Join the Beta</span>
-              </motion.button>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Side: Hero Chat Visual */}
-        <motion.div 
-          className="w-full lg:w-1/2 flex justify-center lg:justify-end"
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.3, type: 'spring', stiffness: 50 }}
-        >
-          <div className="relative w-full max-w-3xl">
-            <HeroChatVisual />
+                Gets Work Done
+              </motion.div>
+            </div>
+            <div className="text-xl text-white/80 mb-8 leading-relaxed">
+              <BlurText 
+                text="One chat interface. Over 100 connected tools. From emails to calendar to Shopify — say it, and it's done."
+                delay={50}
+                animateBy="words"
+                direction="top"
+                className="inline"
+              />
+            </div>
             <motion.div 
-              className="absolute -bottom-8 right-0 left-0 flex justify-center"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.5 }}
+              variants={itemVariants} 
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
             >
-              <button className="flex items-center space-x-2 bg-black/30 backdrop-blur-sm text-white/90 py-2 px-4 rounded-full border border-white/10 hover:bg-black/50 transition-colors">
-                <FaPlay className="text-[#A855F7]" />
-                <span className="text-sm">Hear it in action</span>
-              </button>
+              <Link href="/demo">
+                <motion.button 
+                  whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168,85,247,0.7)' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto bg-[#A855F7] hover:bg-[#8B5CF6] text-white font-semibold py-3 px-8 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+                >
+                  <span>Try the Demo</span>
+                </motion.button>
+              </Link>
+              <Link href="#signup">
+                <motion.button 
+                  whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(255,255,255,0.2)' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto bg-transparent border border-[#A855F7] text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/5 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+                >
+                  <span>Join the Beta</span>
+                </motion.button>
+              </Link>
             </motion.div>
-          </div>
-        </motion.div>
-      </motion.section>
+          </motion.div>
 
+          {/* Right Side: Hero Chat Visual */}
+          <motion.div 
+            className="w-full lg:w-1/2 flex justify-center lg:justify-end"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.3, type: 'spring', stiffness: 50 }}
+          >
+            <div className="relative w-full max-w-3xl">
+              <HeroChatVisual />
+              <motion.div 
+                className="absolute -bottom-8 right-0 left-0 flex justify-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 0.5 }}
+              >
+                <button className="flex items-center space-x-2 bg-black/30 backdrop-blur-sm text-white/90 py-2 px-4 rounded-full border border-white/10 hover:bg-black/50 transition-colors">
+                  <FaPlay className="text-[#A855F7]" />
+                  <span className="text-sm">Hear it in action</span>
+                </button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Connected Apps at bottom of hero */}
+        <div className="w-full mt-auto">
+          <ConnectedApps />
+        </div>
+      </motion.section>
+      
       {/* Scrolling Logos & Trust Row */}
       <ScrollingLogos />
 
@@ -215,40 +223,79 @@ export default function LandingPage() {
         className="py-16 bg-black/20 backdrop-blur-sm border-y border-white/5"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-2xl font-bold mb-10 text-white">Connected to the tools you already use</h2>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-8 max-w-4xl mx-auto">
-            {[
-              { icon: SiGmail, name: 'Gmail' },
-              { icon: FaMicrosoft, name: 'Outlook' },
-              { icon: SiSlack, name: 'Slack' },
-              { icon: SiGooglecalendar, name: 'Google Calendar' },
-              { icon: SiNotion, name: 'Notion' },
-              { icon: SiAsana, name: 'Asana' },
-              { icon: SiTrello, name: 'Trello' },
-              { icon: SiShopify, name: 'Shopify' },
-              { icon: SiStripe, name: 'Stripe' },
-              { icon: SiMailchimp, name: 'Klaviyo' },
-              { icon: SiQuickbooks, name: 'QuickBooks' },
-              { icon: SiFacebook, name: 'Facebook Ads' },
-              { icon: SiGoogle, name: 'Google Ads' },
-              { icon: SiSalesforce, name: 'Salesforce' },
-              { icon: SiHubspot, name: 'HubSpot' },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center justify-center"
-                initial="normal"
-                whileHover="hover"
-                variants={logoVariants}
-                transition={{ duration: 0.3 }}
+          <h2 className="text-center text-2xl font-bold mb-12 text-white">Connected to the tools you already use</h2>
+          
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left side: App icons grid */}
+            <div className="lg:w-1/2">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-8 max-w-2xl mx-auto">
+                {[
+                  { icon: SiGmail, name: 'Gmail' },
+                  { icon: FaMicrosoft, name: 'Outlook' },
+                  { icon: SiSlack, name: 'Slack' },
+                  { icon: SiGooglecalendar, name: 'Google Calendar' },
+                  { icon: SiNotion, name: 'Notion' },
+                  { icon: SiAsana, name: 'Asana' },
+                  { icon: SiTrello, name: 'Trello' },
+                  { icon: SiShopify, name: 'Shopify' },
+                  { icon: SiStripe, name: 'Stripe' },
+                  { icon: SiMailchimp, name: 'Klaviyo' },
+                  { icon: SiQuickbooks, name: 'QuickBooks' },
+                  { icon: SiFacebook, name: 'Facebook Ads' },
+                  { icon: SiGoogle, name: 'Google Ads' },
+                  { icon: SiSalesforce, name: 'Salesforce' },
+                  { icon: SiHubspot, name: 'HubSpot' },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex flex-col items-center justify-center"
+                    initial="normal"
+                    whileHover="hover"
+                    variants={logoVariants}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <item.icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: getLogoColor(item.name) }} />
+                    <span className="text-xs text-white/50 mt-2">{item.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="text-center mt-8 text-white/70 text-lg font-medium">
+                100+ integrations. One assistant.
+              </div>
+            </div>
+            
+            {/* Right side: Descriptive text */}
+            <div className="lg:w-1/2 text-white/80 space-y-6 max-w-xl">
+              <motion.p 
+                className="text-lg leading-relaxed"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <item.icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: getLogoColor(item.name) }} />
-                <span className="text-xs text-white/50 mt-2">{item.name}</span>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center mt-10 text-white/70 text-lg font-medium">
-            100+ integrations. One assistant.
+                Nexevon connects to over 100 tools — Gmail, Shopify, Slack, Notion, QuickBooks, and more — and lets you control all of them from one place.
+              </motion.p>
+              
+              <motion.p 
+                className="text-lg leading-relaxed"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Your AI doesn't just pull data. It writes, schedules, responds, tracks, follows up, and gets real work done — across your entire stack.
+              </motion.p>
+              
+              <motion.p 
+                className="text-lg leading-relaxed"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                No switching tabs. No copy-paste. Just one conversation. One assistant. Everything handled.
+              </motion.p>
+            </div>
           </div>
         </div>
       </motion.section>
