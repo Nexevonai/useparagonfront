@@ -4,8 +4,34 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightbulb, FaClock, FaRocket, FaPlay } from 'react-icons/fa';
+import ScrollingLogos from '../components/ScrollingLogos';
+import BlurText from '../components/BlurText';
+import GradientText from '../components/GradientText';
 import { SiGmail, SiSlack, SiGooglecalendar, SiNotion, SiAsana, SiTrello, SiShopify, SiStripe, SiMailchimp, SiQuickbooks, SiFacebook, SiGoogle, SiSalesforce, SiHubspot, SiZendesk } from 'react-icons/si';
 import { FaMicrosoft } from 'react-icons/fa';
+
+// Function to get color for each logo
+const getLogoColor = (name: string) => {
+  const colorMap: {[key: string]: string} = {
+    'Gmail': '#EA4335',
+    'Outlook': '#0078D4',
+    'Slack': '#4A154B',
+    'Google Calendar': '#4285F4',
+    'Notion': '#FFFFFF',
+    'Asana': '#FC636B',
+    'Trello': '#0079BF',
+    'Shopify': '#96BF48',
+    'Stripe': '#635BFF',
+    'Klaviyo': '#25B9EF',
+    'QuickBooks': '#2CA01C',
+    'Facebook Ads': '#1877F2',
+    'Google Ads': '#4285F4',
+    'Salesforce': '#00A1E0',
+    'HubSpot': '#FF7A59',
+  };
+  
+  return colorMap[name] || '#FFFFFF';
+};
 import HeroChatVisual from '../components/HeroChatVisual'; // Import the new Hero visual
 
 export default function LandingPage() {
@@ -28,8 +54,8 @@ export default function LandingPage() {
   };
   
   const logoVariants = {
-    grayscale: { filter: 'grayscale(100%)', opacity: 0.6 },
-    color: { filter: 'grayscale(0%)', opacity: 1 }
+    normal: { opacity: 0.8 },
+    hover: { opacity: 1, scale: 1.05 }
   };
 
   return (
@@ -101,18 +127,33 @@ export default function LandingPage() {
           className="max-w-xl lg:max-w-2xl text-center lg:text-left"
           variants={containerVariants}
         >
-          <motion.h1 
-            variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 text-white leading-tight"
-          >
-            AI That Actually <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#A855F7] to-[#8B5CF6]">Gets Work Done</span>
-          </motion.h1>
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl text-white/80 mb-8 leading-relaxed"
-          >
-            One chat interface. Over 100 connected tools. From emails to calendar to Shopify — say it, and it's done.
-          </motion.p>
+          <div className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            <motion.div 
+              className="text-white inline-block"
+              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              AI That Actually{" "}
+            </motion.div>
+            <motion.div 
+              className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-[#A855F7] to-[#8B5CF6]"
+              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Gets Work Done
+            </motion.div>
+          </div>
+          <div className="text-xl text-white/80 mb-8 leading-relaxed">
+            <BlurText 
+              text="One chat interface. Over 100 connected tools. From emails to calendar to Shopify — say it, and it's done."
+              delay={50}
+              animateBy="words"
+              direction="top"
+              className="inline"
+            />
+          </div>
           <motion.div 
             variants={itemVariants} 
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
@@ -162,7 +203,10 @@ export default function LandingPage() {
         </motion.div>
       </motion.section>
 
-      {/* Logos & Trust Row */}
+      {/* Scrolling Logos & Trust Row */}
+      <ScrollingLogos />
+
+      {/* Integrations Grid */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -193,12 +237,12 @@ export default function LandingPage() {
               <motion.div
                 key={index}
                 className="flex flex-col items-center justify-center"
-                initial="grayscale"
-                whileHover="color"
+                initial="normal"
+                whileHover="hover"
                 variants={logoVariants}
                 transition={{ duration: 0.3 }}
               >
-                <item.icon className="w-8 h-8 md:w-10 md:h-10 text-white/70" />
+                <item.icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: getLogoColor(item.name) }} />
                 <span className="text-xs text-white/50 mt-2">{item.name}</span>
               </motion.div>
             ))}

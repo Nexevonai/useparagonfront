@@ -2,20 +2,19 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 // Define logo data
 const logos = [
-  { name: 'tldv', src: '/logos/tldv.svg', width: 80 },
-  { name: 'PhotoShelter', src: '/logos/photoshelter.svg', width: 120 },
-  { name: 'copy.ai', src: '/logos/copyai.svg', width: 100 },
-  { name: 'Flatfile', src: '/logos/flatfile.svg', width: 110 },
-  { name: 'AI21labs', src: '/logos/ai21labs.svg', width: 100 },
-  { name: 'iPhone', src: '/logos/iphone.svg', width: 90 },
-  { name: 'sinch', src: '/logos/sinch.svg', width: 85 },
-  { name: 'mitto', src: '/logos/mitto.svg', width: 95 },
-  { name: 'thinkific', src: '/logos/thinkific.svg', width: 120 },
-  { name: 'sosafe', src: '/logos/sosafe.svg', width: 100 },
+  { name: 'tl:dv', style: 'font-mono font-bold' },
+  { name: 'PhotoShelter', style: 'font-sans' },
+  { name: 'copy.ai', style: 'font-mono' },
+  { name: 'Flatfile', style: 'font-sans font-medium' },
+  { name: 'AI21labs', style: 'font-sans font-bold' },
+  { name: 'enPhone', style: 'font-mono' },
+  { name: 'sinch', style: 'font-sans' },
+  { name: 'mitto', style: 'font-sans italic' },
+  { name: 'THINKIFIC', style: 'font-sans tracking-wider' },
+  { name: 'sosafe', style: 'font-mono font-medium' },
 ];
 
 // Duplicate logos for seamless scrolling
@@ -84,7 +83,7 @@ export default function ScrollingLogos() {
             key={`logo1-${index}`} 
             className="flex items-center justify-center mx-8 min-w-[120px] opacity-60 hover:opacity-100 transition-opacity duration-300"
           >
-            <div className="w-full h-8 relative flex items-center justify-center">
+            <div className={`w-full h-8 relative flex items-center justify-center text-white ${logo.style}`}>
               {logo.name}
             </div>
           </div>
@@ -102,7 +101,7 @@ export default function ScrollingLogos() {
             key={`logo2-${index}`} 
             className="flex items-center justify-center mx-8 min-w-[120px] opacity-60 hover:opacity-100 transition-opacity duration-300"
           >
-            <div className="w-full h-8 relative flex items-center justify-center">
+            <div className={`w-full h-8 relative flex items-center justify-center text-white ${logo.style}`}>
               {logo.name}
             </div>
           </div>
