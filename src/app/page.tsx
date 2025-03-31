@@ -2,12 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightbulb, FaClock, FaRocket, FaPlay, FaCheck, FaFileAlt, FaUsers, FaPaperclip } from 'react-icons/fa';
+import { FaArrowRight, FaEnvelope, FaCalendarAlt, FaChartLine, FaTasks, FaLightbulb, FaClock, FaRocket, FaPlay, FaCheck, FaFileAlt, FaUsers, FaPaperclip, FaSyncAlt } from 'react-icons/fa';
 import ScrollingLogos from '../components/ScrollingLogos';
 import BlurText from '../components/BlurText';
 import GradientText from '../components/GradientText';
 import ConnectedApps from '../components/ConnectedApps';
+import PricingSection from '../components/PricingSection';
 import { SiGmail, SiSlack, SiGooglecalendar, SiNotion, SiAsana, SiTrello, SiShopify, SiStripe, SiMailchimp, SiQuickbooks, SiFacebook, SiGoogle, SiSalesforce, SiHubspot, SiZendesk } from 'react-icons/si';
 import { FaMicrosoft } from 'react-icons/fa';
 
@@ -34,6 +36,7 @@ const getLogoColor = (name: string) => {
   return colorMap[name] || '#FFFFFF';
 };
 import HeroChatVisual from '../components/HeroChatVisual'; // Import the new Hero visual
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function LandingPage() {
 
@@ -78,7 +81,13 @@ export default function LandingPage() {
           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#A855F7] to-[#8B5CF6] flex items-center justify-center shadow-lg">
             <span className="text-white font-bold">N</span>
           </div>
-          <span className="text-xl font-bold">Nexevon</span>
+          <Image 
+            src="/images/nexevon-white-logo.png" 
+            alt="Nexevon" 
+            width={120} 
+            height={30} 
+            className="object-contain" 
+          />
         </div>
         <div className="hidden md:flex space-x-6 items-center">
           <Link href="#features" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
@@ -98,11 +107,40 @@ export default function LandingPage() {
           </Link>
         </div>
         <div className="md:hidden">
-          <button className="text-white/70 hover:text-white">
+          <button 
+            className="text-white/70 hover:text-white" 
+            onClick={() => {
+              const mobileMenu = document.getElementById('mobile-menu');
+              if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+              }
+            }}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+        </div>
+        
+        {/* Mobile Menu */}
+        <div id="mobile-menu" className="hidden fixed top-16 left-0 right-0 bg-gray-950/95 backdrop-blur-md border-b border-white/10 p-4 z-50">
+          <div className="flex flex-col space-y-3">
+            <Link href="#features" className="text-sm font-medium text-white/70 hover:text-white transition-colors py-2">
+              Features
+            </Link>
+            <Link href="#how-it-works" className="text-sm font-medium text-white/70 hover:text-white transition-colors py-2">
+              How It Works
+            </Link>
+            <Link href="#use-cases" className="text-sm font-medium text-white/70 hover:text-white transition-colors py-2">
+              Use Cases
+            </Link>
+            <Link href="#pricing" className="text-sm font-medium text-white/70 hover:text-white transition-colors py-2">
+              Pricing
+            </Link>
+            <Link href="/demo" className="bg-[#8B5CF6] hover:bg-[#A855F7] text-white px-5 py-2 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:shadow-[0_0_20px_rgba(168,85,247,0.7)] text-center mt-2">
+              Try the Demo
+            </Link>
+          </div>
         </div>
       </motion.nav>
 
@@ -111,14 +149,14 @@ export default function LandingPage() {
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 pt-32 sm:pt-40 pb-0 flex flex-col items-center justify-between min-h-[90vh]"
+        className="container mx-auto px-4 pt-28 sm:pt-32 md:pt-40 pb-0 flex flex-col items-center justify-between min-h-[90vh]"
       >
         {/* Tagline above the main content */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="absolute top-24 left-0 right-0 text-center text-white/70 text-sm tracking-wider"
+          className="absolute top-20 sm:top-24 left-0 right-0 text-center text-white/70 text-xs sm:text-sm tracking-wider"
         >
           Your AI assistant for email, calendar, marketing, eCom, and more.
         </motion.p>
@@ -129,7 +167,7 @@ export default function LandingPage() {
             className="max-w-xl lg:max-w-2xl text-center lg:text-left"
             variants={containerVariants}
           >
-            <div className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight px-2 sm:px-0">
               <motion.div 
                 className="text-white inline-block"
                 initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
@@ -147,7 +185,7 @@ export default function LandingPage() {
                 Gets Work Done
               </motion.div>
             </div>
-            <div className="text-xl text-white/80 mb-8 leading-relaxed space-y-4">
+            <div className="text-lg sm:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed space-y-4 px-2 sm:px-0">
               <BlurText 
                 text="Talk to your AI assistant. It handles everything."
                 delay={50}
@@ -161,7 +199,7 @@ export default function LandingPage() {
                   delay={70}
                   animateBy="words"
                   direction="top"
-                  className="inline text-white/70 text-lg"
+                  className="inline text-white/70 text-base sm:text-lg"
                 />
               </div>
             </div>
@@ -173,7 +211,7 @@ export default function LandingPage() {
                 <motion.button 
                   whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168,85,247,0.7)' }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-[#A855F7] hover:bg-[#8B5CF6] text-white font-semibold py-3 px-8 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+                  className="w-full sm:w-auto bg-[#A855F7] hover:bg-[#8B5CF6] text-white font-semibold py-3 px-6 sm:px-8 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
                 >
                   <span>Try the Demo</span>
                 </motion.button>
@@ -182,9 +220,9 @@ export default function LandingPage() {
                 <motion.button 
                   whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(255,255,255,0.2)' }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-transparent border border-[#A855F7] text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/5 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
+                  className="w-full sm:w-auto bg-transparent border border-[#A855F7] text-white font-semibold py-3 px-6 sm:px-8 rounded-lg hover:bg-white/5 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2"
                 >
-                  <span>Join the Beta</span>
+                  <span>Apply for Access</span>
                 </motion.button>
               </Link>
             </motion.div>
@@ -232,12 +270,21 @@ export default function LandingPage() {
         className="py-16 bg-black/20 backdrop-blur-sm border-y border-white/5"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-2xl font-bold mb-12 text-white">Connected to the tools you already use</h2>
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={2}
+            blurStrength={6}
+            containerClassName="text-center mb-20 pt-6"
+            textClassName="text-2xl font-bold text-white"
+          >
+            Connected to the tools you already use
+          </ScrollReveal>
           
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-center mt-8 md:mt-16">
             {/* Left side: App icons grid */}
-            <div className="lg:w-1/2">
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-8 max-w-2xl mx-auto">
+            <div className="lg:w-1/2 pt-8">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8 max-w-2xl mx-auto">
                 {[
                   { icon: SiGmail, name: 'Gmail' },
                   { icon: FaMicrosoft, name: 'Outlook' },
@@ -263,47 +310,52 @@ export default function LandingPage() {
                     variants={logoVariants}
                     transition={{ duration: 0.3 }}
                   >
-                    <item.icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: getLogoColor(item.name) }} />
-                    <span className="text-xs text-white/50 mt-2">{item.name}</span>
+                    <item.icon className="w-10 h-10 md:w-10 md:h-10" style={{ color: getLogoColor(item.name) }} />
+                    <span className="text-xs md:text-sm text-white/70 mt-2">{item.name}</span>
                   </motion.div>
                 ))}
               </div>
-              <div className="text-center mt-8 text-white/70 text-lg font-medium">
+              <div className="text-center mt-6 md:mt-8 text-white/70 text-base md:text-lg font-medium">
                 100+ integrations. One assistant.
               </div>
             </div>
             
             {/* Right side: Descriptive text */}
             <div className="lg:w-1/2 text-white/80 space-y-6 max-w-xl">
-              <motion.p 
-                className="text-lg leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={0}
+                blurStrength={3}
+                containerClassName="mb-6"
+                textClassName="text-lg leading-relaxed text-white/80"
               >
                 Nexevon connects to over 100 tools — Gmail, Shopify, Slack, Notion, QuickBooks, and more — and lets you control all of them from one place.
-              </motion.p>
+              </ScrollReveal>
               
-              <motion.p 
-                className="text-lg leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={0}
+                blurStrength={3}
+                containerClassName="mb-6"
+                textClassName="text-lg leading-relaxed text-white/80"
+                wordAnimationEnd="bottom bottom-=10%"
               >
                 Your AI doesn't just pull data. It writes, schedules, responds, tracks, follows up, and gets real work done — across your entire stack.
-              </motion.p>
+              </ScrollReveal>
               
-              <motion.p 
-                className="text-lg leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={0}
+                blurStrength={3}
+                containerClassName="mb-6"
+                textClassName="text-lg leading-relaxed text-white/80"
+                wordAnimationEnd="bottom bottom-=5%"
               >
                 No switching tabs. No copy-paste. Just one conversation. One assistant. Everything handled.
-              </motion.p>
+              </ScrollReveal>
             </div>
           </div>
         </div>
@@ -320,10 +372,10 @@ export default function LandingPage() {
       >
         <h2 className="text-4xl font-bold text-center mb-16 text-white">How Nexevon Works</h2>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {/* Step 1 */}
           <motion.div 
-            className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10 relative overflow-hidden"
+            className="bg-black/20 backdrop-blur-sm rounded-xl p-5 md:p-8 border border-white/10 relative overflow-hidden"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -354,7 +406,7 @@ export default function LandingPage() {
 
           {/* Step 2 */}
           <motion.div 
-            className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10 relative overflow-hidden"
+            className="bg-black/20 backdrop-blur-sm rounded-xl p-5 md:p-8 border border-white/10 relative overflow-hidden"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -404,7 +456,7 @@ export default function LandingPage() {
 
           {/* Step 3 */}
           <motion.div 
-            className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10 relative overflow-hidden"
+            className="bg-black/20 backdrop-blur-sm rounded-xl p-5 md:p-8 border border-white/10 relative overflow-hidden"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -661,39 +713,69 @@ export default function LandingPage() {
         transition={{ duration: 0.8 }}
         className="py-16 sm:py-24 bg-[#0A0A0A]"
       >
-        <div className="container mx-auto px-4 text-center max-w-4xl">
+        <div className="container mx-auto px-4 text-center max-w-5xl">
           <motion.h2 
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-white"
+            className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-white"
           >
-            Work Smarter, Not Harder.
+            Let Your AI Assistant Handle the Busywork
           </motion.h2>
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            variants={containerVariants} // Reuse container variants for staggering
+            variants={containerVariants}
             viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10"
           >
             {[ 
-              { icon: FaClock, title: 'Save Hours Every Week', description: 'Automate repetitive tasks and get information faster.' },
-              { icon: FaRocket, title: 'Boost Productivity', description: 'Focus on high-impact work while your AI handles the rest.' },
-              { icon: FaLightbulb, title: 'Unlock Actionable Insights', description: 'Connect data across tools for a clearer picture.' }
+              { 
+                icon: FaSyncAlt, 
+                emoji: '🔄', 
+                title: 'Free Up Hours of Manual Work', 
+                description: 'Your assistant automates repetitive tasks - checking calendars, chasing files, sending follow-ups - so you don\'t have to.'
+              },
+              { 
+                icon: FaRocket, 
+                emoji: '🚀', 
+                title: 'Boost Productivity Across the Stack', 
+                description: 'Stay focused while Nexevon drafts emails, books meetings, pulls insights, and handles your day - across all your tools.'
+              },
+              { 
+                icon: FaLightbulb, 
+                emoji: '💡', 
+                title: 'Turn Scattered Data into Action', 
+                description: 'Nexevon connects the dots between your inbox, CRM, calendar, and e-com tools to give you clear next steps, not noise.'
+              }
             ].map((benefit, index) => (
-              <motion.div key={index} variants={itemVariants} className="flex flex-col items-center">
-                <div className="p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mb-4">
-                  <benefit.icon className="text-white text-2xl" />
+              <motion.div 
+                key={index} 
+                variants={itemVariants} 
+                className="flex flex-col items-center text-left p-6 rounded-xl border border-transparent hover:border-[#A855F7]/20 transition-all duration-300 group"
+                whileHover={{ y: -5 }}
+              >
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-[#A855F7]/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <div className="p-4 rounded-full bg-gradient-to-br from-[#A855F7] to-[#8B5CF6] relative z-10 shadow-[0_0_15px_rgba(139,92,246,0.3)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] transition-all duration-500">
+                    <benefit.icon className="text-white text-2xl" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{benefit.title}</h3>
-                <p className="text-white/70">{benefit.description}</p>
+                <div className="sm:hidden text-2xl mb-2">{benefit.emoji}</div>
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#A855F7] transition-colors duration-300">{benefit.title}</h3>
+                <p className="text-white/70 sm:block">{benefit.description}</p>
+                <div className="hidden sm:hidden mt-3 text-[#A855F7] cursor-pointer">
+                  <span>Read more</span>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Pricing Section */}
+      <PricingSection />
 
       {/* Beta Sign-up Section */}
       <motion.section 

@@ -115,7 +115,7 @@ const HeroChatVisual: React.FC = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
       className={`w-full max-w-3xl mx-auto bg-[#111111] backdrop-blur-lg rounded-xl border-[1.5px] ${isGlowing ? 'border-[#A855F7]/50' : 'border-[#222222] border-t-white/10 border-l-white/10 border-r-transparent border-b-transparent'} overflow-hidden transition-all duration-500 ${isGlowing ? 'shadow-[0_0_30px_rgba(168,85,247,0.3)]' : 'shadow-[0_10px_40px_rgba(0,0,0,0.3)]'} after:content-[''] after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-br after:from-white/5 after:to-transparent after:pointer-events-none`}
-      style={{ minWidth: '500px' }}
+      style={{ minWidth: 'min(500px, 100%)', maxWidth: '100%', overflow: 'hidden' }}
     >
       {/* Header/Toolbar simulation */}
       <div className="bg-[#0A0A0A] px-4 py-3 border-b border-white/10 flex items-center justify-between relative z-10 bg-gradient-to-r from-[#0A0A0A] via-[#111111] to-[#0A0A0A]">
@@ -134,7 +134,21 @@ const HeroChatVisual: React.FC = () => {
       </div>
 
       {/* Message Area */}
-      <div className="h-96 p-4 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent bg-[#111111]" style={{ minWidth: '500px', width: '100%' }}>
+      <div className="h-96 p-4 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent bg-[#111111]" style={{ minWidth: 'min(500px, 100%)', width: '100%' }}>
+        {/* Mobile-only sizing adjustment */}
+        <style jsx global>{`
+          @media (max-width: 640px) {
+            .message-container {
+              max-width: 95% !important;
+            }
+            .message-text {
+              font-size: 0.8rem !important;
+            }
+            .source-text {
+              font-size: 0.7rem !important;
+            }
+          }
+        `}</style>
         <AnimatePresence initial={false}>
           {visibleMessages.map((msg) => { // Remove index from map args if not needed elsewhere
             // Add safety check to prevent crash if msg is unexpectedly undefined during transition
@@ -152,7 +166,7 @@ const HeroChatVisual: React.FC = () => {
               >
                 {msg.sender === 'user' ? (
                   <div className="max-w-[85%] px-4 py-3 rounded-lg text-sm shadow-[0_4px_15px_rgba(139,92,246,0.3)] bg-gradient-to-br from-[#A855F7] to-[#8B5CF6] text-white rounded-br-none relative after:content-[''] after:absolute after:inset-0 after:rounded-lg after:rounded-br-none after:bg-gradient-to-br after:from-white/10 after:to-transparent after:pointer-events-none">
-                    {msg.text}
+                    <span className="message-text">{msg.text}</span>
                   </div>
                 ) : (
                   <div className="flex items-start space-x-2 max-w-[85%]">
@@ -165,9 +179,9 @@ const HeroChatVisual: React.FC = () => {
                     {/* Message Bubble */}
                     <div className="bg-[#0A0A0A] border-[1.5px] border-[#222222] border-t-white/10 border-l-white/10 border-r-transparent border-b-transparent px-4 py-3 rounded-lg text-sm shadow-[0_4px_15px_rgba(0,0,0,0.2)] text-white/90 rounded-bl-none flex-1 relative after:content-[''] after:absolute after:inset-0 after:rounded-lg after:rounded-bl-none after:bg-gradient-to-br after:from-white/5 after:to-transparent after:pointer-events-none">
                       {msg.source && (
-                        <div className="text-xs text-white/50 mb-1">{msg.source}</div>
+                        <div className="text-xs text-white/50 mb-1 source-text">{msg.source}</div>
                       )}
-                      {msg.text}
+                      <span className="message-text">{msg.text}</span>
                     </div>
                   </div>
                 )}
